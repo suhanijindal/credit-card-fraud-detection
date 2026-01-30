@@ -1,130 +1,192 @@
 # Credit Card Fraud Detection
 
-A machine learning project that detects fraudulent credit card transactions using Logistic Regression.
+![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3.0-orange.svg)
+![Status](https://img.shields.io/badge/Status-Active-success.svg)
+
+A machine learning project that detects fraudulent credit card transactions using Logistic Regression with 93% accuracy.
+
+---
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Dataset](#dataset)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Model Performance](#model-performance)
+- [Project Structure](#project-structure)
+- [Technologies](#technologies)
+- [Future Improvements](#future-improvements)
+- [Author](#author)
+
+---
 
 ## Overview
 
-This project uses a dataset of credit card transactions to train a binary classification model that identifies fraudulent transactions. The dataset is highly imbalanced, with fraudulent transactions making up only a small percentage of the total data.
+This project implements a binary classification model to identify fraudulent credit card transactions. The model handles highly imbalanced data using under-sampling techniques and achieves strong predictive performance.
+
+### Key Highlights
+
+- **Accuracy**: 93% on test data
+- **Algorithm**: Logistic Regression
+- **Data Balancing**: Under-sampling technique
+- **Dataset Size**: 284,807 transactions
+
+---
+
+## Dataset
+
+The dataset contains transactions made by credit cards in September 2013 by European cardholders.
+
+| Attribute | Value |
+|-----------|-------|
+| **Total Transactions** | 284,807 |
+| **Fraudulent Cases** | 492 (0.172%) |
+| **Legitimate Cases** | 284,315 |
+| **Features** | 30 (28 PCA-transformed + Time + Amount) |
+| **Target Variable** | Class (0 = Legitimate, 1 = Fraud) |
+
+**Download Dataset**: [Kaggle - Credit Card Fraud Detection](https://www.kaggle.com/mlg-ulb/creditcardfraud)
+
+> **Note**: The dataset is not included in this repository due to its size (143 MB). Download it from Kaggle and place it in the `data/` folder.
+
+---
 
 ## Features
 
-- Data exploration and analysis
-- Handling imbalanced dataset using under-sampling
-- Logistic Regression model training
-- Model evaluation with accuracy metrics
+- Data exploration and statistical analysis
+- Missing value detection
+- Class distribution analysis
+- Handling imbalanced datasets with under-sampling
+- Model training with Logistic Regression
+- Comprehensive model evaluation
 
-## Project Structure
-
-```
-credit-card-fraud-detection/
-├── src/
-│   └── train.py          # Main training script
-├── data/
-│   └── creditcard.csv    # Dataset
-├── models/               # Saved models directory
-├── requirements.txt      # Python dependencies
-└── README.md            # Project documentation
-```
+---
 
 ## Installation
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/credit-card-fraud-detection.git
-cd credit-card-fraud-detection
-```
+### Prerequisites
 
-2. Create and activate a virtual environment:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
+- Python 3.7 or higher
+- pip package manager
 
-3. Install required packages:
-```bash
-pip install -r requirements.txt
-```
+### Setup
 
-4. Download the dataset:
-   - Download from [Kaggle - Credit Card Fraud Detection](https://www.kaggle.com/mlg-ulb/creditcardfraud)
-   - Place `creditcard.csv` in the project root directory
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/suhanijindal/credit-card-fraud-detection.git
+   cd credit-card-fraud-detection
+   ```
+
+2. **Create a virtual environment**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Download the dataset**
+   - Visit [Kaggle](https://www.kaggle.com/mlg-ulb/creditcardfraud)
+   - Download `creditcard.csv`
+   - Place it in the `data/` folder
+
+---
 
 ## Usage
 
-Run the training script:
+Run the training script from the project root:
 
 ```bash
 cd src
 python train.py
 ```
 
-The script will:
-1. Load and explore the dataset
-2. Analyze class distribution
-3. Create a balanced dataset using under-sampling
-4. Train a Logistic Regression model
-5. Evaluate model performance
+### What the script does:
 
-## Dataset
+1. Loads and explores the dataset
+2. Checks for missing values
+3. Analyzes class distribution
+4. Creates a balanced dataset using under-sampling
+5. Splits data into training and testing sets (80-20)
+6. Trains a Logistic Regression model
+7. Evaluates model performance
 
-The dataset contains transactions made by credit cards in September 2013 by European cardholders.
-
-- Total transactions: 284,807
-- Fraudulent transactions: 492 (0.172%)
-- Features: 30 (28 PCA-transformed features + Time + Amount)
-- Target: Class (0 = legitimate, 1 = fraudulent)
+---
 
 ## Model Performance
 
-The Logistic Regression model achieves:
-- Training accuracy: ~94%
-- Testing accuracy: ~93%
+### Results
 
-## Methodology
+| Metric | Training Data | Testing Data |
+|--------|---------------|--------------|
+| **Accuracy** | ~94% | ~93% |
 
-### 1. Data Preprocessing
-- Check for missing values
-- Analyze class distribution
-- Statistical analysis of features
+### Methodology
 
-### 2. Handling Imbalanced Data
-- Under-sampling technique used
-- Sample 492 legitimate transactions to match fraud cases
-- Creates balanced dataset of 984 total transactions
+**Data Preprocessing**
+- Class imbalance ratio: 492 fraud cases vs 284,315 legitimate cases
+- Under-sampling: Selected 492 random legitimate cases to match fraud cases
+- Final balanced dataset: 984 transactions (492 fraud + 492 legitimate)
 
-### 3. Model Training
+**Model Training**
 - Algorithm: Logistic Regression
-- Train-test split: 80-20
+- Train-test split: 80-20 ratio
 - Stratified sampling to maintain class distribution
 
-### 4. Evaluation
-- Accuracy score on training data
-- Accuracy score on testing data
+---
 
-## Technologies Used
+## Project Structure
 
-- Python 3.x
-- NumPy
-- Pandas
-- Scikit-learn
+```
+credit-card-fraud-detection/
+│
+├── src/
+│   └── train.py              # Main training script
+│
+├── data/
+│   └── creditcard.csv        # Dataset (download separately)
+│
+├── models/                   # Directory for saved models
+│
+├── requirements.txt          # Python dependencies
+├── README.md                 # Project documentation
+└── .gitignore               # Git ignore rules
+```
 
-## Future Improvements
+---
 
-- Try other algorithms (Random Forest, XGBoost, Neural Networks)
-- Implement over-sampling techniques (SMOTE)
-- Add more evaluation metrics (Precision, Recall, F1-Score, ROC-AUC)
-- Cross-validation for better model assessment
-- Feature importance analysis
+## Technologies
 
-## License
+- **Python 3.x** - Programming language
+- **NumPy** - Numerical computations
+- **Pandas** - Data manipulation and analysis
+- **Scikit-learn** - Machine learning library
+  - Logistic Regression
+  - Train-test split
+  - Accuracy metrics
 
-This project is open source and available under the MIT License.
+---
 
 ## Author
 
-Suhani
+**Suhani Jindal**
+
+GitHub: [@suhanijindal](https://github.com/suhanijindal)
+
+---
 
 ## Acknowledgments
 
-- Dataset provided by Kaggle
+- Dataset provided by [Kaggle](https://www.kaggle.com/mlg-ulb/creditcardfraud)
 - Inspired by real-world fraud detection systems
+- Built with scikit-learn and Python
+
+---
+
+**⭐ If you find this project useful, please consider giving it a star!**

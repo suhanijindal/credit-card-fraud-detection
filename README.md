@@ -18,7 +18,6 @@ A machine learning project that detects fraudulent credit card transactions usin
 - [Model Performance](#model-performance)
 - [Project Structure](#project-structure)
 - [Technologies](#technologies)
-- [Future Improvements](#future-improvements)
 - [Author](#author)
 
 ---
